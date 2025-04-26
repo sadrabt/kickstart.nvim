@@ -12,7 +12,8 @@ vim.g.have_nerd_font = true
 -- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
 
-vim.opt.tabstop = 4
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
 
 -- Make line numbers default
 vim.opt.number = true
@@ -90,8 +91,13 @@ vim.keymap.set('n', '<leader>wq', '<cmd>wq<CR>', { desc = 'Save and Quit' })
 -- Enter adds and empty line
 vim.keymap.set('n', '<CR>', 'o<Esc>')
 
--- Tab tabs insterts a tab before the cursor
-vim.keymap.set('n', '<Tab>', 'i<Tab><Esc>l')
+-- Tab tabs insterts a tab before the line
+
+local opts = { noremap = true, silent = true }
+vim.keymap.set('n', '<Tab>', '>>', opts)
+vim.keymap.set('n', '<S-Tab>', '<<', opts)
+vim.keymap.set('v', '<Tab>', '>gv', opts)
+vim.keymap.set('v', '<S-Tab>', '<gv', opts)
 
 -- end of my keymaps
 --
